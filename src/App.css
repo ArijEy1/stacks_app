@@ -1,0 +1,59 @@
+.loader {
+  font-size: 24px;
+  text-align: center;
+  padding: 20px;
+}
+
+.error {
+  font-size: 24px;
+  text-align: center;
+  padding: 20px;
+  color: red;
+}
+
+.stack-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.stack-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 300px; /* Adjust the maximum width as needed */
+  width: 100%; /* Make it full width */
+  text-align: center; /* Center the content */
+}
+
+.stack-card h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.stack-card p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #666;
+}
+
+.stack-component {
+  margin-top: 10px;
+  font-size: 16px;
+  list-style-type: disc;
+  padding-left: 20px;
+  color: #444;
+}
+.stack-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 400px; /* Adjust the maximum width as needed for larger cards */
+  width: 100%; /* Make it full width */
+  text-align: center; /* Center the content */
+}
