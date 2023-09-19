@@ -9,6 +9,8 @@ import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import './Navbar.css'
+import logo from './assets/logo.png'; 
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -25,8 +27,12 @@ const Search = styled('div')(({ theme }) => ({
   },
 }));
 const LogoImg = styled('img')({
-  marginRight: '16px', // Add some margin to separate the logo from other elements
+  marginRight: '16px',
+  src: logo, // Use the imported image directly
+  alt: 'logo',
+  width:'120px',
 });
+
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -60,7 +66,8 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" className='Navbar'>
         <Toolbar>
-        <LogoImg src="./assets/logo.png" alt="logo" />
+        <LogoImg src={require('./assets/logo.png')} />
+      
           <IconButton
             size="large"
             edge="start"

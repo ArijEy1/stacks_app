@@ -1,5 +1,3 @@
-// src/components/StackList.js
-
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './App.css';
@@ -8,6 +6,8 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
+import axios from 'axios';
+import { Button } from '@mui/material';
 
 const App = () => {
   const [stacks, setStacks] = useState([]);
@@ -15,49 +15,31 @@ const App = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Simulate fetching data (replace with your actual API call)
-    setTimeout(() => {
-      const data = [
-        {
-          id: '1',
-          name: 'Stack 1',
-          description: 'This is Stack 1',
-          components: ['1', '2'],
-        },
-        {
-          id: '2',
-          name: 'Stack 2',
-          description: 'This is Stack 2',
-          components: ['3'],
-        },
-        {
-          id: '3',
-          name: 'Stack 2',
-          description: 'This is Stack 2',
-          components: ['3'],
-        },
-        {
-          id: '4',
-          name: 'Stack 2',
-          description: 'This is Stack 2',
-          components: ['3'],
-        },
-        {
-          id: '5',
-          name: 'Stack 2',
-          description: 'This is Stack 2',
-          components: ['3'],
-        },
-        {
-          id: '6',
-          name: 'Stack 2',
-          description: 'This is Stack 2',
-          components: ['3'],
-        },
-      ];
-      setStacks(data);
-      setLoading(false);
-    }, 1000);
+    axios.get('https://zenml-frontend-challenge-backend.fly.dev/stacks')
+      .then((response) => {
+        const stackData = response.data;
+
+        // Calculate the totalLength for each stack
+        const stacksWithTotalLength = stackData.map((stackItem) => {
+          let totalLength = 0;
+
+          for (const key in stackItem.components) {
+            if (stackItem.components.hasOwnProperty(key)) {
+              totalLength += stackItem.components[key].length;
+            }
+          }
+
+          return { ...stackItem, totalLength };
+        });
+
+        // Set the stacks state with the data including totalLength
+        setStacks(stacksWithTotalLength);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) {
@@ -70,45 +52,49 @@ const App = () => {
 
   return (
     <div>
-    <Navbar/>
-    <h1>List of Stacks</h1>
+      <Navbar />
+      <h1>List of Stacks</h1>
       <div className="MySwiper">
-     
         <Swiper
-  effect={'coverflow'}
-  grabCursor={true}
-  centeredSlides={true}
-  slidesPerView={'auto'}
-  coverflowEffect={{
-    rotate: 50,
-    stretch: 0,
-    depth: 100,
-    modifier: 1,
-    slideShadows: true,
-  }}
-  pagination={true}
-  modules={[EffectCoverflow, Pagination]}
-  className="mySwiper"
->
-  {stacks.map((stack) => (
-    <SwiperSlide key={stack.id}>
-      <div className="stack-card">
-        <h2>{stack.name}</h2>
-        <p>{stack.description}</p>
-        <ul className="stack-component">
-          {stack.components.map((componentId) => (
-            <li key={componentId}>{componentId}</li>
+          effect={'coverflow'}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={'auto'}
+          coverflowEffect={{
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          }}
+          pagination={true}
+          modules={[EffectCoverflow, Pagination]}
+          className="mySwiper"
+        >
+          {stacks.map((stack) => (
+            <SwiperSlide key={stack.id}>
+              <div className="stack-card">
+                <div className='stack-info'>
+                <h3>{stack.name}</h3>
+                <p>Total stack components: {stack.totalLength}</p>
+                <p>{stack.is_shared}</p>
+                <Button style={{ textTransform: 'lowercase',marginTop:'50%' }}>View components</Button>
+                <ul className="stack-component">
+                  {Array.isArray(stack.components) ? (
+                    stack.components.map((componentId) => (
+                      <li key={componentId}>{componentId}</li>
+                    ))
+                  ) : (
+                    <></>
+                  )}
+                </ul>
+                </div>
+              </div>
+            </SwiperSlide>
           ))}
-        </ul>
+        </Swiper>
       </div>
-    </SwiperSlide>
-  ))}
-</Swiper>
-       
-      </div>
-
     </div>
-
   );
 };
 
