@@ -42,6 +42,18 @@ const App = () => {
           description: 'This is Stack 2',
           components: ['3'],
         },
+        {
+          id: '5',
+          name: 'Stack 2',
+          description: 'This is Stack 2',
+          components: ['3'],
+        },
+        {
+          id: '6',
+          name: 'Stack 2',
+          description: 'This is Stack 2',
+          components: ['3'],
+        },
       ];
       setStacks(data);
       setLoading(false);
@@ -59,8 +71,9 @@ const App = () => {
   return (
     <div>
     <Navbar/>
+    <h1>List of Stacks</h1>
       <div className="MySwiper">
-        <h1>List of Stacks</h1>
+     
         <Swiper
   effect={'coverflow'}
   grabCursor={true}

@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import './Navbar.css'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -23,6 +24,9 @@ const Search = styled('div')(({ theme }) => ({
     width: 'auto',
   },
 }));
+const LogoImg = styled('img')({
+  marginRight: '16px', // Add some margin to separate the logo from other elements
+});
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -54,8 +58,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" className='Navbar'>
         <Toolbar>
+        <LogoImg src="./assets/logo.png" alt="logo" />
           <IconButton
             size="large"
             edge="start"
@@ -71,7 +76,7 @@ export default function Navbar() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+
           </Typography>
           <Search>
             <SearchIconWrapper>

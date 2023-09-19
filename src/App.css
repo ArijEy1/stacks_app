@@ -1,3 +1,7 @@
+body{
+  background: rgb(234,235,241);
+  background: radial-gradient(circle, rgba(234,235,241,1) 0%, rgba(124,54,121,1) 100%);
+}
 .loader {
   font-size: 24px;
   text-align: center;
@@ -14,7 +18,7 @@
 .stack-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 2px;
   justify-content: center;
 }
 
@@ -25,8 +29,9 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   max-width: 300px; /* Adjust the maximum width as needed */
-  width: 100%; /* Make it full width */
+  width: 80%; /* Make it full width */
   text-align: center; /* Center the content */
+  height: 300px
 }
 
 .stack-card h2 {
@@ -56,4 +61,10 @@
   max-width: 400px; /* Adjust the maximum width as needed for larger cards */
   width: 100%; /* Make it full width */
   text-align: center; /* Center the content */
+}
+.swiper-slide{
+  width:22% !important;
+}
+.swiper-wrapper{
+  margin-top: 8% !important;
 }
