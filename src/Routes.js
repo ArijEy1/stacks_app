@@ -2,8 +2,8 @@
 import React from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
-import StacksComponent from './Components/StacksComponent';
-import Stacks from './Components/Stacks';
+import StacksComponent from './Components/stackComponents/StacksComponent';
+import Stacks from './Components/stacks/Stacks';
 
 const Routes = () => {
   return (

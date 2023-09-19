@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import './StacksComponents.css';
+import './StacksComponents.css'
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 import axios from 'axios';
-import Popup from './Popup'; // Import your Popup component
-import './Popup.css'; // Import your CSS file for styling
-import Navbar from './navbar/Navbar';
-
-import { ApiUrls } from '../config/ApiUrls';
+import Popup from '../popup/Popup'; // Import your Popup component
+import Navbar from '../navbar/Navbar';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+import { ApiUrls } from '../../config/ApiUrls';
 
 const StacksComponent = () => {
   const [stacks, setStacks] = useState([]);
@@ -54,13 +54,20 @@ const StacksComponent = () => {
     setSelectedStack(stack);
     togglePopup(); // Open the modal when a stack is clicked
   };
-
   if (loading) {
-    return <div className="loader">Loading...</div>;
+    return (
+      <div className="loader">
+        <CircularProgress color="primary" />
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="error">Error: {error.message}</div>;
+    return (
+      <div className="error">
+        <Alert severity="error">Error: {error.message}</Alert>
+      </div>
+    );
   }
 
   return (

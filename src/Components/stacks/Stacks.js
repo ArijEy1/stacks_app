@@ -1,7 +1,7 @@
 import React from 'react'
 import './Stacks.css'
-import CustomPaginationActionsTable from './Table';
-import Navbar from './navbar/Navbar';
+import CustomPaginationActionsTable from '../Table/Table';
+import Navbar from '../navbar/Navbar';
 
 function Stacks() {
   return (

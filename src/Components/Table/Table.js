@@ -14,8 +14,14 @@ import './Table.css';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { FcApproval ,FcCancel} from "react-icons/fc";
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+import { IconButton, Snackbar } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 function CustomPaginationActionsTable() {
+  const [openAlert, setOpenAlert] = useState(false);
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [stack, setStack] = useState([]);
@@ -47,13 +53,48 @@ function CustomPaginationActionsTable() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
   if (loading) {
-    return <div className="loader">Loading...</div>;
+    return (
+      <div className="loader">
+        <CircularProgress color="primary" />
+      </div>
+    );
   }
 
+  const handleCloseAlert = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenAlert(false);
+  };
   if (error) {
-    return <div className="error">Error: {error.message}</div>;
+    return (
+      <div className="error">
+        <Snackbar
+          open={openAlert}
+          autoHideDuration={6000} // Adjust as needed
+          onClose={handleCloseAlert}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        >
+          <Alert
+            severity="error"
+            action={
+              <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleCloseAlert}
+              >
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            }
+            sx={{ zIndex: 2000 }} // Set the z-index here
+          >
+            Error: {error.message}
+          </Alert>
+        </Snackbar>
+      </div>
+    );
   }
 
   // Calculate the index of the first and last item on the current page

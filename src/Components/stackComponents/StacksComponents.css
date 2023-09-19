@@ -32,7 +32,7 @@
     background:
       linear-gradient(to bottom left, transparent 49.5%, #fff 50%) 0 50px/100% 100px,
       linear-gradient(#fff, #fff) bottom/100% calc(100% - 150px),
-      url(../assets/logo.png) top/100% auto no-repeat;
+      url(../../assets/logo.png) top/100% auto no-repeat;
     background-repeat: no-repeat;
   }
   
