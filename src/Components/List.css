@@ -1,0 +1,9 @@
+/* Table.css */
+.MuiTableContainer-root {
+    margin:13% auto;
+}
+body{
+    background: rgb(234,235,241);
+
+    background: radial-gradient(circle, rgba(234,235,241,1) 0%, rgb(204, 146, 201) 100%);
+}

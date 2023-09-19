@@ -10,6 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import './Navbar.css'
 import logo from './assets/logo.png'; 
+import { Link } from 'react-router-dom'; // Import Link from React Router
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -64,27 +65,40 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className='Navbar'>
+      <AppBar position="static" className="Navbar">
         <Toolbar>
-        <LogoImg src={require('./assets/logo.png')} />
-      
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+          <LogoImg src={require('./assets/logo.png')} />
+          {/* Navigation Link for "Stacks" */}
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', sm: 'block' },
+              marginRight: '16px', // Add margin to separate from the next link
+            }}
           >
-
+            <Link to="/stacks" className="nav-link">
+              Stacks
+            </Link>
           </Typography>
+          
+          {/* Navigation Link for "Stack Components" */}
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', sm: 'block' },
+            }}
+          >
+            <Link to="/" className="nav-link">
+              Stack Components
+            </Link>
+          </Typography>
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
