@@ -1,28 +1,31 @@
-/* Table.css */
+/* Stacks.css */
 
+/* Center the table horizontally and vertically */
 .table-container {
-    display: flex;
-    justify-content: center; /* Horizontally center the content */
-    align-items: center; /* Vertically center the content */
-    height: 100vh; /* Optionally, set a fixed height for centering vertically */
-  }
-  
-  .custom-table {
-    border-collapse: collapse;
-    width: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-  }
-  
-  .custom-table th,
-  .custom-table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .custom-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Style the custom table */
+.custom-table {
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  max-width: 100%; /* Ensure the table is responsive */
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.custom-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}

@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './StacksComponents.css';
-import Navbar from '../Navbar';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Popup from './Popup'; // Import your Popup component
 import './Popup.css'; // Import your CSS file for styling
+import Navbar from './navbar/Navbar';
+
+import { ApiUrls } from '../config/ApiUrls';
 
 const StacksComponent = () => {
   const [stacks, setStacks] = useState([]);
@@ -20,11 +21,9 @@ const StacksComponent = () => {
 
   useEffect(() => {
     axios
-      .get('https://zenml-frontend-challenge-backend.fly.dev/stacks')
+      .get(ApiUrls.FetchStacks)
       .then((response) => {
         const stackData = response.data;
-
-        // Calculate the totalLength for each stack
         const stacksWithTotalLength = stackData.map((stackItem) => {
           let totalLength = 0;
 
@@ -104,12 +103,12 @@ const StacksComponent = () => {
 
       {/* Conditionally render the Popup based on the state */}
       {isPopupOpen && selectedStack && (
-  <Popup
-    stack={selectedStack}
-    componentNames={Object.keys(selectedStack.components)} // Pass the component names
-    onClose={togglePopup}
-  />
-)}
+        <Popup
+          stack={selectedStack}
+          componentNames={Object.keys(selectedStack.components)} // Pass the component names
+          onClose={togglePopup}
+        />
+      )}
     </div>
   );
 };

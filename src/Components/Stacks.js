@@ -1,15 +1,14 @@
 import React from 'react'
 import './Stacks.css'
-import CustomPaginationActionsTable from './ListComponent';
-import Navbar from '../Navbar';
-import { useParams } from 'react-router-dom';
+import CustomPaginationActionsTable from './Table';
+import Navbar from './navbar/Navbar';
 
 function Stacks() {
-    const { stackId } = useParams();
-  return (<> <Navbar/>
-    <CustomPaginationActionsTable/> </>
-
- 
+  return (
+    <>
+      <Navbar />
+      <CustomPaginationActionsTable />
+    </>
   )
 }
 

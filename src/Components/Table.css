@@ -1,9 +1,16 @@
 /* Table.css */
 .MuiTableContainer-root {
-    margin:13% auto;
+    margin:3% auto;
+
 }
 body{
     background: rgb(234,235,241);
 
     background: radial-gradient(circle, rgba(234,235,241,1) 0%, rgb(204, 146, 201) 100%);
+}
+.stacks-details{
+    margin-top: 9%;
+}
+.MuiTablePagination-root{
+margin-top: 0.5%;
 }

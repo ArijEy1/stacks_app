@@ -1,16 +1,14 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
+import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import './Navbar.css'
-import logo from './assets/logo.png'; 
-import { Link } from 'react-router-dom'; // Import Link from React Router
+import logo from '../../assets/logo.png';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -31,7 +29,7 @@ const LogoImg = styled('img')({
   marginRight: '16px',
   src: logo, // Use the imported image directly
   alt: 'logo',
-  width:'120px',
+  width: '120px',
 });
 
 
@@ -67,7 +65,7 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" className="Navbar">
         <Toolbar>
-          <LogoImg src={require('./assets/logo.png')} />
+          <LogoImg src={require('../../assets/logo.png')} />
           {/* Navigation Link for "Stacks" */}
           <Typography
             variant="h6"
@@ -79,11 +77,11 @@ export default function Navbar() {
               marginRight: '16px', // Add margin to separate from the next link
             }}
           >
-            <Link to="/stacks" className="nav-link">
+            <Link href="/stacks" className="nav-link">
               Stacks
             </Link>
           </Typography>
-          
+
           {/* Navigation Link for "Stack Components" */}
           <Typography
             variant="h6"
@@ -94,7 +92,7 @@ export default function Navbar() {
               display: { xs: 'none', sm: 'block' },
             }}
           >
-            <Link to="/" className="nav-link">
+            <Link href="/" className="nav-link">
               Stack Components
             </Link>
           </Typography>
