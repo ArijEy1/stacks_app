@@ -13,7 +13,6 @@ import './Table.css';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { FcApproval, FcCancel } from "react-icons/fc";
-import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import { IconButton, Snackbar } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -55,7 +54,6 @@ function CustomPaginationActionsTable() {
   if (loading) {
     return (
       <div className="loader">
-        {/* <CircularProgress color="primary" /> */}
         <GridLoader
                   color="#7c3679"
                   loading={loading}
