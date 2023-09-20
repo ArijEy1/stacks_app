@@ -1,16 +1,37 @@
-/* Table.css */
 .MuiTableContainer-root {
-    margin:3% auto;
+    margin: 3% auto;
 
 }
-body{
-    background: rgb(234,235,241);
 
-    background: radial-gradient(circle, rgba(234,235,241,1) 0%, rgb(204, 146, 201) 100%);
+body {
+    background: rgb(234, 235, 241);
+    background: radial-gradient(circle, rgba(234, 235, 241, 1) 0%, rgb(204, 146, 201) 100%);
 }
-.stacks-details{
-    margin-top: 9%;
+
+.stacks-details {
+    margin-top: 6%;
 }
-.MuiTablePagination-root{
-margin-top: 0.5%;
+
+.MuiTablePagination-root {
+    margin-top: 0.5%;
+}
+
+.MuiTableContainer-root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.MuiTable-root {
+    width: 100%;
+    max-width: 100%;
+    margin: 1rem;
+}
+
+.MuiTableCell-root {
+    padding: 8px;
+}
+
+.css-rorn0c-MuiTableContainer-root {
+    overflow-x: hidden !important;
 }

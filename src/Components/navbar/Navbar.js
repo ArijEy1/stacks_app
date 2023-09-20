@@ -10,7 +10,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import './Navbar.css'
 import logo from '../../assets/logo.png';
 
-
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -27,11 +26,10 @@ const Search = styled('div')(({ theme }) => ({
 }));
 const LogoImg = styled('img')({
   marginRight: '16px',
-  src: logo, // Use the imported image directly
+  src: logo,
   alt: 'logo',
   width: '120px',
 });
-
 
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
@@ -47,7 +45,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -64,39 +61,34 @@ export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" className="Navbar">
-        <Toolbar>
+        <Toolbar style={{ flexWrap: 'wrap' }}>
           <LogoImg src={require('../../assets/logo.png')} />
-          {/* Navigation Link for "Stacks" */}
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{
-              flexGrow: 1,
               display: { xs: 'none', sm: 'block' },
-              marginRight: '16px', // Add margin to separate from the next link
+              marginLeft: 'auto',
             }}
           >
             <Link href="/stacks" className="nav-link">
               Stacks
             </Link>
           </Typography>
-
-          {/* Navigation Link for "Stack Components" */}
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{
-              flexGrow: 1,
               display: { xs: 'none', sm: 'block' },
+              marginLeft: '16px',
             }}
           >
-            <Link href="/" className="nav-link">
+            <Link href="/components" className="nav-link">
               Stack Components
             </Link>
           </Typography>
-
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

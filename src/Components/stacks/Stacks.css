@@ -1,31 +1,93 @@
-/* Stacks.css */
+.MySwiper {
+  background: rgb(234, 235, 241);
+  background: radial-gradient(circle,
+      rgba(234, 235, 241, 1) 0%,
+      #7c3679 100%);
+  margin-top:-4%;
+}
 
-/* Center the table horizontally and vertically */
-.table-container {
+.stack-card {
+  border: 1px solid #dadada;
+  box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.2s;
+  padding: 20px;
+  width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background:
+    linear-gradient(to bottom left, transparent 49.5%, #fff 50%) 0 50px/100% 100px,
+    linear-gradient(#fff, #fff) bottom/100% calc(100% - 150px),
+    url(../../assets/logo.png) top/100% auto no-repeat;
+  background-repeat: no-repeat;
 }
 
-/* Style the custom table */
-.custom-table {
-  border-collapse: collapse;
+.stack-card h2,
+.stack-card p {
+  margin: 0;
+  padding: 5px;
+}
+
+.stack-info {
+  margin-top: auto;
+}
+
+.stack-card p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #666;
+}
+
+.stack-info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 100px;
+}
+
+.stack-info h3 {
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stack-component {
+  margin-top: 10px;
+  font-size: 16px;
+  list-style-type: disc;
+  padding-left: 20px;
+  color: #444;
+}
+
+.stack-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 400px;
   width: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  max-width: 100%; /* Ensure the table is responsive */
+  text-align: center;
+  height: 300px;
 }
 
-.custom-table th,
-.custom-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+.swiper-slide {
+  width: 22% !important;
 }
 
-.custom-table th {
-  background-color: #f2f2f2;
-  font-weight: bold;
+.swiper-wrapper {
+  margin-top: 8% !important;
+}
+
+@media screen and (max-width: 768px) {
+  .stack-card {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+  .stack-card {
+    padding: 10px;
+  }
 }

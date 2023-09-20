@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,16 +6,19 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import TableHead from '@mui/material/TableHead'; // Import TableHead
+import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
+import Tooltip from '@mui/material/Tooltip';
 import './Table.css';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { FcApproval ,FcCancel} from "react-icons/fc";
+import { FcApproval, FcCancel } from "react-icons/fc";
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import { IconButton, Snackbar } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { format } from 'date-fns';
+import { GridLoader } from 'react-spinners';
 
 function CustomPaginationActionsTable() {
   const [openAlert, setOpenAlert] = useState(false);
@@ -27,8 +28,6 @@ function CustomPaginationActionsTable() {
   const [stack, setStack] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // Fetch the data by stackId from URL parameter
   const { stackId } = useParams();
 
   useEffect(() => {
@@ -43,7 +42,7 @@ function CustomPaginationActionsTable() {
         setError(error);
         setLoading(false);
       });
-  }, [stackId]); // Re-fetch data when stackId changes
+  }, [stackId]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -56,7 +55,18 @@ function CustomPaginationActionsTable() {
   if (loading) {
     return (
       <div className="loader">
-        <CircularProgress color="primary" />
+        {/* <CircularProgress color="primary" /> */}
+        <GridLoader
+                  color="#7c3679"
+                  loading={loading}
+                  size={30}
+                  style={{
+                    marginTop: '15vh',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    display: 'block',
+                  }}
+                />
       </div>
     );
   }
@@ -72,7 +82,7 @@ function CustomPaginationActionsTable() {
       <div className="error">
         <Snackbar
           open={openAlert}
-          autoHideDuration={6000} // Adjust as needed
+          autoHideDuration={6000} 
           onClose={handleCloseAlert}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         >
@@ -88,7 +98,7 @@ function CustomPaginationActionsTable() {
                 <CloseIcon fontSize="small" />
               </IconButton>
             }
-            sx={{ zIndex: 2000 }} // Set the z-index here
+            sx={{ zIndex: 2000 }}
           >
             Error: {error.message}
           </Alert>
@@ -97,85 +107,84 @@ function CustomPaginationActionsTable() {
     );
   }
 
-  // Calculate the index of the first and last item on the current page
   const startIndex = page * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
 
   return (
     <div className="stacks-details">
-  <Box
-    display="flex"
-    flexDirection="column"
-    alignItems="center" // Center the table horizontally
-    m={2} // Add margin around the table
-  >
-    <Paper
-      elevation={3}
-      sx={{ borderRadius: 10, boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)' }}
-    >
-      <TableContainer>
-        <Table
-          sx={{ minWidth: 500, paddingTop: '18px', marginBottom: "8px" }}
-          aria-label="custom pagination table"
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center" 
+        m={2} 
+      >
+        <Paper
+          elevation={4}
+          sx={{ borderRadius: 10, boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)' }}
         >
-          {/* Table header */}
-          <TableHead>
-            <TableRow>
-              <TableCell align="center" style={{ fontWeight: 'bold' }}>
-                ID
-              </TableCell>
-              <TableCell align="center" style={{ fontWeight: 'bold' }}>
-                Created
-              </TableCell>
-              <TableCell align="center" style={{ fontWeight: 'bold' }}>
-                Name
-              </TableCell>
-              <TableCell align="center" style={{ fontWeight: 'bold' }}>
-                Shared
-              </TableCell>
-              <TableCell align="right" style={{ fontWeight: 'bold' }}>
-                Flavor
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {stack.slice(startIndex, endIndex).map((item) => (
-              <TableRow key={item.id}>
-                <TableCell component="th" scope="row">
-                  {item.id}
-                </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                  {item.created}
-                </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                  {item.name}
-                </TableCell>
-                <TableCell style={{ width: 160 }} align="center">
-                  {item.is_shared === true ? <FcApproval /> : <FcCancel />}
-                </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                  {item.flavor}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Paper>
+          <TableContainer>
+            <Table
+              sx={{ minWidth: 500, paddingTop: '18px', marginBottom: "8px" }}
+              aria-label="custom pagination table"
+            >
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center" style={{ fontWeight: 'bold' }}>
+                    ID
+                  </TableCell>
+                  <TableCell align="center" style={{ fontWeight: 'bold' }}>
+                    Created
+                  </TableCell>
+                  <TableCell align="center" style={{ fontWeight: 'bold' }}>
+                    Name
+                  </TableCell>
+                  <TableCell align="center" style={{ fontWeight: 'bold' }}>
+                    Shared
+                  </TableCell>
+                  <TableCell align="center" style={{ fontWeight: 'bold' }}>
+                    Flavor
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {stack.slice(startIndex, endIndex).map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell component="th" scope="row">
+                      <Tooltip title={item.id} arrow>
+                        <span>{item.id.substring(0, 8)}...</span>
+                      </Tooltip>
+                    </TableCell>
+                    <TableCell style={{ width: 160 }} align="center">
+                      {format(new Date(item.created), 'MM/dd/yyyy HH:mm:ss')}
+                    </TableCell>
+                    <TableCell style={{ width: 160 }} align="center">
+                      {item.name}
+                    </TableCell>
+                    <TableCell style={{ width: 160 }} align="center">
+                      {item.is_shared === true ? <FcApproval /> : <FcCancel />}
+                    </TableCell>
+                    <TableCell style={{ width: 160 }} align="center">
+                      {item.flavor}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
 
-    {/* Add pagination component */}
-    <TablePagination
-      sx={{ borderRadius: 10, boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)' }}
-      rowsPerPageOptions={[5, 10, 25]}
-      component="div"
-      count={stack.length}
-      rowsPerPage={rowsPerPage}
-      page={page}
-      onPageChange={handleChangePage}
-      onRowsPerPageChange={handleChangeRowsPerPage}
-    />
-  </Box>
-</div>
+        <TablePagination
+          sx={{ borderRadius: 10, boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)' }}
+          rowsPerPageOptions={[5, 10, 25]}
+          component="div"
+          count={stack.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Box>
+    </div>
   );
 }
 
