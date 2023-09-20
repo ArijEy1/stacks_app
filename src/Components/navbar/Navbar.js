@@ -72,7 +72,7 @@ export default function Navbar() {
               marginLeft: 'auto',
             }}
           >
-            <Link href="/stacks" className="nav-link">
+            <Link href="/" className="nav-link">
               Stacks
             </Link>
           </Typography>
