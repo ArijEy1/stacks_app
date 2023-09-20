@@ -1,7 +1,7 @@
 
 import React from 'react';
 import './Popup.css';
-import { FaCloudsmith, FaDeploydog, FaDatabase, FaCheckCircle, FaPencilAlt, FaExclamation, FaUserSecret, FaBox, FaFolderOpen } from "react-icons/fa";
+import { FaCloudsmith, FaDeploydog, FaDatabase, FaCheckCircle, FaExclamation, FaUserSecret, FaBox, FaFolderOpen } from "react-icons/fa";
 import { Button } from '@mui/material';
 
 const Popup = ({ stack, componentNames, onClose }) => {

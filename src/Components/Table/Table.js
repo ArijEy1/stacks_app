@@ -18,10 +18,10 @@ import { IconButton, Snackbar } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { format } from 'date-fns';
 import { GridLoader } from 'react-spinners';
+import { ApiUrls } from '../../config/ApiUrls';
 
 function CustomPaginationActionsTable() {
   const [openAlert, setOpenAlert] = useState(false);
-
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [stack, setStack] = useState([]);
@@ -31,7 +31,7 @@ function CustomPaginationActionsTable() {
 
   useEffect(() => {
     axios
-      .get(`https://zenml-frontend-challenge-backend.fly.dev/components`)
+      .get(ApiUrls.FetchComponents)
       .then((response) => {
         const stackData = response.data;
         setStack(stackData);
@@ -55,16 +55,16 @@ function CustomPaginationActionsTable() {
     return (
       <div className="loader">
         <GridLoader
-                  color="#7c3679"
-                  loading={loading}
-                  size={30}
-                  style={{
-                    marginTop: '15vh',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    display: 'block',
-                  }}
-                />
+          color="#7c3679"
+          loading={loading}
+          size={30}
+          style={{
+            marginTop: '15vh',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            display: 'block',
+          }}
+        />
       </div>
     );
   }
@@ -80,7 +80,7 @@ function CustomPaginationActionsTable() {
       <div className="error">
         <Snackbar
           open={openAlert}
-          autoHideDuration={6000} 
+          autoHideDuration={6000}
           onClose={handleCloseAlert}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         >
@@ -113,8 +113,8 @@ function CustomPaginationActionsTable() {
       <Box
         display="flex"
         flexDirection="column"
-        alignItems="center" 
-        m={2} 
+        alignItems="center"
+        m={2}
       >
         <Paper
           elevation={4}
