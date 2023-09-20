@@ -11,60 +11,24 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Live Demo
+https://main--zenml.netlify.app/
+## For bonus points...
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1) How would you add the ability to create a stack and stack component to your application?
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+*For the stack creation, I would add an icon for creation of a stack that opens a sidebar with a form creation. Once the creation is done, the user can hide the form and continue to navigate the rest of the stacks.
+*For the stack component, as it is already siplayed in a table, I would add a modal popup with a creation form and field controls to ensure an easy and efficient process of navigating the components and visualizing the new added components at the same time.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2) How would you add the ability to delete a stack and stack component to your application?
 
-## Learn More
+*For the deletion of the stack, we can simply add a delete icon in the swiperSlide that gets the id of the stack and deletes it.
+**For the component deletion, I would add another column in the table with an action name that will enable the user to delete any specific component.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3) How would you handle a Bearer Token, in case the API would need authentication?
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+First of all, to securely use a token in case of implementing authentication, I would make sure to store it using Redux library and manage it correctly. Also, the token should be added in the request URLs (Including the bearer token to the request headers.)
+The token should also have an expiry date so when the date expires, we use a refresh token and of course store it again replacing the old one. In addition, when using a token, I would create a protected/ private route component to add all routes there that need authentication to be accessed, and in case the access is denied, a meaningful error message should be displayed to the user. Last but not least, when the user logs out, the stored token should be cleared . 
