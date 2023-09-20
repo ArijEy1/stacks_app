@@ -6,7 +6,7 @@ import Stacks from './Components/stacks/Stacks';
 const Routes = () => {
   return (
     <Router>
-      <Route exact path="/stacks" component={Stacks} />
+      <Route exact path="/" component={Stacks} />
       <Route path="/components" component={StackComponents} />
     </Router>
   );
